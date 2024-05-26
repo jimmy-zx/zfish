@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=3 uid="uid://0133r0uu37pn"]
+
+[ext_resource type="Script" path="res://modules/stage/config_builder.gd" id="1_x2jbu"]
+
+[node name="ConfigBuilder" type="Node2D"]
+script = ExtResource("1_x2jbu")
+
+[node name="Builder" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 576.0
+offset_bottom = 320.0
+mouse_filter = 2
+
+[node name="SaveDialog" type="FileDialog" parent="Builder"]
+position = Vector2i(50, 50)
+size = Vector2i(611, 500)
+access = 2
+filters = PackedStringArray("*.json")
+
+[node name="OpenDialog" type="FileDialog" parent="Builder"]
+title = "Open a File"
+position = Vector2i(50, 50)
+size = Vector2i(611, 500)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.json")
+
+[node name="Message" type="Label" parent="Builder"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 512.0
+offset_bottom = 201.0
+autowrap_mode = 2
+
+[node name="MenuBar" type="HBoxContainer" parent="Builder"]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 512.0
+offset_bottom = 32.0
+mouse_filter = 2
+
+[node name="File" type="MenuButton" parent="Builder/MenuBar"]
+layout_mode = 2
+text = "File"
+item_count = 6
+popup/item_0/text = "Open"
+popup/item_0/id = 0
+popup/item_1/text = "Save"
+popup/item_1/id = 1
+popup/item_2/text = "New"
+popup/item_2/id = 2
+popup/item_3/text = "Reload"
+popup/item_3/id = 3
+popup/item_4/text = ""
+popup/item_4/id = 4
+popup/item_4/separator = true
+popup/item_5/text = "Open User Directory"
+popup/item_5/id = 5
+
+[node name="Edit" type="MenuButton" parent="Builder/MenuBar"]
+layout_mode = 2
+text = "Edit"
+item_count = 2
+popup/item_0/text = "Builder"
+popup/item_0/checkable = 1
+popup/item_0/checked = true
+popup/item_0/id = 0
+popup/item_1/text = "Run"
+popup/item_1/id = 1
+
+[connection signal="file_selected" from="Builder/SaveDialog" to="." method="_on_save_dialog_file_selected"]
+[connection signal="file_selected" from="Builder/OpenDialog" to="." method="_on_open_dialog_file_selected"]

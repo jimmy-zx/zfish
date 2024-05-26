@@ -1,0 +1,73 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmejms6w6nboo"]
+
+[ext_resource type="Script" path="res://modules/zebra_fish/zebra_fish.gd" id="1_83aiy"]
+
+[node name="ZebraFish" type="Node2D"]
+script = ExtResource("1_83aiy")
+
+[node name="Builder" type="Window" parent="."]
+title = "Zebra Fish"
+initial_position = 1
+size = Vector2i(500, 300)
+visible = false
+unresizable = true
+
+[node name="Apply" type="Button" parent="Builder"]
+offset_left = 336.0
+offset_right = 464.0
+offset_bottom = 64.0
+text = "Apply"
+
+[node name="Attrs" type="Node2D" parent="Builder"]
+
+[node name="Count" type="TextEdit" parent="Builder/Attrs"]
+offset_right = 320.0
+offset_bottom = 64.0
+tooltip_text = "Number of fish"
+placeholder_text = "Count"
+
+[node name="Speed" type="HSlider" parent="Builder/Attrs"]
+offset_left = 96.0
+offset_top = 64.0
+offset_right = 416.0
+offset_bottom = 128.0
+tooltip_text = "Moving speed"
+min_value = 200.0
+max_value = 500.0
+value = 200.0
+
+[node name="Scale" type="HSlider" parent="Builder/Attrs"]
+offset_left = 96.0
+offset_top = 128.0
+offset_right = 416.0
+offset_bottom = 192.0
+tooltip_text = "Scale of fish"
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="Move" type="CheckButton" parent="Builder/Attrs"]
+offset_top = 184.0
+offset_right = 416.0
+offset_bottom = 248.0
+tooltip_text = "Whether the fish are moving"
+text = "Move"
+
+[node name="SpeedLabel" type="Label" parent="Builder/Attrs"]
+offset_left = 8.0
+offset_top = 80.0
+offset_right = 56.0
+offset_bottom = 106.0
+text = "Speed"
+
+[node name="ScaleLabel" type="Label" parent="Builder/Attrs"]
+offset_left = 8.0
+offset_top = 144.0
+offset_right = 48.0
+offset_bottom = 170.0
+text = "Scale"
+
+[node name="Scene" type="Node2D" parent="."]
+
+[connection signal="close_requested" from="Builder" to="." method="_on_builder_close_requested"]
+[connection signal="pressed" from="Builder/Apply" to="." method="_on_apply_pressed"]

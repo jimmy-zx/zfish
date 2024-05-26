@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://t8203lyehn64"]
+
+[ext_resource type="Script" path="res://lib/map.gd" id="1_7j5c4"]
+
+[node name="Map" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_7j5c4")
+
+[node name="Builder" type="Node2D" parent="."]
+
+[node name="Items" type="ItemList" parent="Builder"]
+offset_top = 100.0
+offset_right = 328.0
+offset_bottom = 392.0
+
+[node name="New" type="Button" parent="Builder"]
+offset_left = 1.0
+offset_right = 65.0
+offset_bottom = 40.0
+text = "New
+"
+
+[node name="Delete" type="Button" parent="Builder"]
+offset_top = 48.0
+offset_right = 64.0
+offset_bottom = 88.0
+text = "Delete"
+
+[node name="Name" type="TextEdit" parent="Builder"]
+offset_left = 72.0
+offset_right = 328.0
+offset_bottom = 40.0
+placeholder_text = "Name"
+
+[node name="Path" type="TextEdit" parent="Builder"]
+offset_left = 72.0
+offset_top = 48.0
+offset_right = 328.0
+offset_bottom = 88.0
+placeholder_text = "TSCN file"
+
+[connection signal="pressed" from="Builder/New" to="." method="_on_new_pressed"]
+[connection signal="pressed" from="Builder/Delete" to="." method="_on_delete_pressed"]

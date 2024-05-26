@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://be03r81rsc1gj"]
+
+[ext_resource type="Script" path="res://modules/stage/stage_builder.gd" id="1_w0onn"]
+[ext_resource type="PackedScene" uid="uid://bhv23lgjc53vt" path="res://lib/list.tscn" id="2_hgim8"]
+
+[node name="StageBuilder" type="Node2D"]
+script = ExtResource("1_w0onn")
+
+[node name="Stage" type="Node2D" parent="."]
+
+[node name="Builder" type="Window" parent="."]
+initial_position = 1
+title = "Stage Builder"
+size = Vector2i(800, 500)
+visible = false
+unresizable = true
+
+[node name="List" parent="Builder" instance=ExtResource("2_hgim8")]
+tooltip_text = "A list of stages.
+
+Each stage will appear after the stage before it has finished."
+
+[node name="Show" type="CheckButton" parent="Builder"]
+offset_left = 400.0
+offset_top = 142.0
+offset_right = 462.0
+offset_bottom = 182.0
+tooltip_text = "Toggles whether or not to show the selected stage."
+text = "Show"
+
+[node name="Run" type="Button" parent="Builder"]
+offset_left = 400.0
+offset_top = 190.0
+offset_right = 464.0
+offset_bottom = 230.0
+tooltip_text = "Start running from the first stage"
+text = "Run"
+
+[node name="BuilderEnable" type="Button" parent="Builder"]
+offset_left = 496.0
+offset_top = 144.0
+offset_right = 606.0
+offset_bottom = 175.0
+text = "Show Builder"
+
+[connection signal="close_requested" from="Builder" to="." method="_on_builder_close_requested"]
+[connection signal="hook" from="Builder/List" to="." method="_on_list_hook"]
+[connection signal="toggled" from="Builder/Show" to="." method="_on_show_toggled"]
+[connection signal="pressed" from="Builder/Run" to="." method="_on_run_pressed"]
+[connection signal="pressed" from="Builder/BuilderEnable" to="." method="_on_builder_enable_pressed"]

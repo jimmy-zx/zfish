@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbud8kkowjvj2"]
+
+[ext_resource type="Script" path="res://modules/timer/timer.gd" id="1_mnn34"]
+
+[node name="Timer" type="Node2D"]
+script = ExtResource("1_mnn34")
+
+[node name="Builder" type="Window" parent="."]
+initial_position = 1
+title = "Timer Builder"
+size = Vector2i(500, 100)
+visible = false
+unresizable = true
+
+[node name="Time" type="TextEdit" parent="Builder"]
+offset_right = 192.0
+offset_bottom = 40.0
+tooltip_text = "Number of seconds to wait until the signal is emitted"
+placeholder_text = "Time"
+
+[node name="Apply" type="Button" parent="Builder"]
+offset_left = 200.0
+offset_right = 256.0
+offset_bottom = 40.0
+text = "Apply"
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="close_requested" from="Builder" to="." method="_on_builder_close_requested"]
+[connection signal="pressed" from="Builder/Apply" to="." method="_on_apply_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxy74j0bwvq6f"]
+
+[ext_resource type="Script" path="res://test/demo/stress.gd" id="1_4uj34"]
+[ext_resource type="PackedScene" uid="uid://urlofy31deio" path="res://lib/fps.tscn" id="2_lr6dx"]
+
+[node name="Stress" type="Node2D"]
+script = ExtResource("1_4uj34")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Fps" parent="." instance=ExtResource("2_lr6dx")]

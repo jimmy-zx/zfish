@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://cevkxgtcfva7n"]
+
+[ext_resource type="Script" path="res://modules/image/image.gd" id="1_dtaut"]
+[ext_resource type="Script" path="res://modules/image/texture.gd" id="2_by0lq"]
+
+[node name="Image" type="Node2D"]
+script = ExtResource("1_dtaut")
+
+[node name="Builder" type="Window" parent="."]
+title = "Image"
+initial_position = 1
+size = Vector2i(300, 100)
+visible = false
+unresizable = true
+
+[node name="Path" type="TextEdit" parent="Builder"]
+offset_right = 192.0
+offset_bottom = 28.0
+placeholder_text = "Image Path"
+
+[node name="Browse" type="Button" parent="Builder"]
+offset_left = 200.0
+offset_right = 266.0
+offset_bottom = 31.0
+text = "Browse"
+
+[node name="BrowsePath" type="FileDialog" parent="Builder"]
+title = "Open a File"
+position = Vector2i(50, 50)
+size = Vector2i(600, 600)
+ok_button_text = "Open"
+file_mode = 0
+access = 1
+
+[node name="Scale" type="HSlider" parent="Builder"]
+offset_left = 72.0
+offset_top = 31.0
+offset_right = 264.0
+offset_bottom = 63.0
+tooltip_text = "The scale of the picture"
+max_value = 3.0
+step = 0.05
+value = 1.0
+
+[node name="ScaleLabel" type="Label" parent="Builder"]
+offset_left = 8.0
+offset_top = 32.0
+offset_right = 48.0
+offset_bottom = 58.0
+text = "Scale"
+
+[node name="Texture" type="TextureRect" parent="."]
+offset_left = 500.0
+offset_top = 500.0
+offset_right = 500.0
+offset_bottom = 500.0
+script = ExtResource("2_by0lq")
+
+[connection signal="close_requested" from="Builder" to="." method="_on_builder_close_requested"]
+[connection signal="pressed" from="Builder/Browse" to="." method="_on_browse_pressed"]
+[connection signal="file_selected" from="Builder/BrowsePath" to="." method="_on_browse_path_file_selected"]
+[connection signal="drag_ended" from="Builder/Scale" to="." method="_on_scale_drag_ended"]
+[connection signal="drag_started" from="Builder/Scale" to="." method="_on_scale_drag_started"]
+[connection signal="mouse_entered" from="Texture" to="Texture" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Texture" to="Texture" method="_on_mouse_exited"]

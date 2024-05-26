@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhu6nq2sqn3qn"]
+
+[ext_resource type="Script" path="res://modules/zebra_fish/fish.gd" id="1_ot3ky"]
+[ext_resource type="Texture2D" uid="uid://bh7n343eqdmb4" path="res://arts/Zebrafish.png" id="2_rj6xp"]
+[ext_resource type="Texture2D" uid="uid://bve4nddam1jo8" path="res://arts/small-zebrafish-from-shutterstock_orig.png" id="2_xfqyi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tw6j1"]
+radius = 67.0
+height = 464.0
+
+[node name="Fish" type="CharacterBody2D" groups=["fishes"]]
+scale = Vector2(0.5, 0.5)
+collision_layer = 2
+input_pickable = true
+script = ExtResource("1_ot3ky")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.3, 0.3)
+shape = SubResource("CapsuleShape2D_tw6j1")
+
+[node name="RealisticFishTexture" type="Sprite2D" parent="."]
+position = Vector2(-6, 4)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("2_xfqyi")
+
+[node name="FishTexture" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_rj6xp")
+
+[node name="SelectionBox" type="Node2D" parent="."]
+visible = false
+
+[node name="LeftLine" type="ColorRect" parent="SelectionBox"]
+offset_left = 70.0
+offset_top = -22.0
+offset_right = 71.0
+offset_bottom = 21.0
+
+[node name="RightLine" type="ColorRect" parent="SelectionBox"]
+offset_left = -66.0
+offset_top = -22.0
+offset_right = -65.0
+offset_bottom = 21.0
+
+[node name="TopLine" type="ColorRect" parent="SelectionBox"]
+offset_left = -66.0
+offset_top = -22.0
+offset_right = 71.0
+offset_bottom = -21.0
+
+[node name="BotLine" type="ColorRect" parent="SelectionBox"]
+offset_left = -66.0
+offset_top = 21.0
+offset_right = 71.0
+offset_bottom = 22.0
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

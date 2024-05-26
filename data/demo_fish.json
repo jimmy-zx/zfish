@@ -1,0 +1,112 @@
+{
+    "zfish": "02",
+    "path": "res://modules/stage/stage_builder.tscn",
+    "data": [
+        {
+            "path": "res://modules/stage/scene_builder.tscn",
+            "data": {
+                "env": {
+                    "path": "res://modules/env/env.tscn",
+                    "data": {
+                        "background": "000000ff"
+                    }
+                },
+                "pic": {
+                    "path": "res://modules/image/image.tscn",
+                    "data": {
+                        "path": "res://arts/rectangle.png",
+                        "position": {
+                            "x": 1506,
+                            "y": 768
+                        },
+                        "scale": 1
+                    }
+                },
+                "fish": {
+                    "path": "res://modules/zebra_fish/zebra_fish.tscn",
+                    "data": {
+                        "count": 10,
+                        "speed": 200,
+                        "scale": 0.6,
+                        "move": true
+                    }
+                },
+                "tmr": {
+                    "path": "res://modules/timer/timer.tscn",
+                    "data": {
+                        "time": 10,
+                        "exception_data": "timer"
+                    }
+                }
+            }
+        },
+        {
+            "path": "res://modules/stage/scene_builder.tscn",
+            "data": {
+                "env": {
+                    "path": "res://modules/env/env.tscn",
+                    "data": {
+                        "background": "281347ff"
+                    }
+                },
+                "dup": {
+                    "path": "res://modules/dup_builder/dup_builder.tscn",
+                    "data": {
+                        "path": "res://modules/indian_leaf_fish/indian_leaf_fish.tscn",
+                        "data": {
+                            "scale_min": 1,
+                            "scale_max": 2,
+                            "scale_step": 0.2
+                        },
+                        "count": 2
+                    }
+                },
+                "tmr": {
+                    "path": "res://modules/timer/timer.tscn",
+                    "data": {
+                        "time": 10,
+                        "exception_data": "timer"
+                    }
+                }
+            }
+        },
+        {
+            "path": "res://modules/stage/scene_builder.tscn",
+            "data": {
+                "env": {
+                    "path": "res://modules/env/env.tscn",
+                    "data": {
+                        "background": "291c1cff"
+                    }
+                },
+                "fish": {
+                    "path": "res://modules/zebra_fish/zebra_fish.tscn",
+                    "data": {
+                        "count": 10,
+                        "speed": 200,
+                        "scale": 0.6,
+                        "move": true
+                    }
+                },
+                "tmr": {
+                    "path": "res://modules/timer/timer.tscn",
+                    "data": {
+                        "time": 10,
+                        "exception_data": "timer"
+                    }
+                }
+            }
+        },
+        {
+            "path": "res://modules/stage/scene_builder.tscn",
+            "data": {
+                "env": {
+                    "path": "res://modules/env/env.tscn",
+                    "data": {
+                        "background": "000000ff"
+                    }
+                }
+            }
+        }
+    ]
+}

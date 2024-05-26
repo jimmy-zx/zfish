@@ -1,0 +1,22 @@
+{
+    "zfish": "02",
+    "path": "res://modules/stage/stage_builder.tscn",
+    "data": [
+        {
+            "path": "res://modules/stage/scene_builder.tscn",
+            "data": {
+                "img": {
+                    "path": "res://modules/image/image.tscn",
+                    "data": {
+                        "path": "user://triangle.png",
+                        "position": {
+                            "x": 207,
+                            "y": 631
+                        },
+                        "scale": 1.4
+                    }
+                }
+            }
+        }
+    ]
+}

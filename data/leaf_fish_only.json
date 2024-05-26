@@ -1,0 +1,29 @@
+{
+    "zfish": "02",
+    "path": "res://modules/stage/stage_builder.tscn",
+    "data": [
+        {
+            "path": "res://modules/stage/scene_builder.tscn",
+            "data": {
+                "env": {
+                    "path": "res://modules/env/env.tscn",
+                    "data": {
+                        "background": "441616ff"
+                    }
+                },
+                "fish": {
+                    "path": "res://modules/dup_builder/dup_builder.tscn",
+                    "data": {
+                        "path": "res://modules/indian_leaf_fish/indian_leaf_fish.tscn",
+                        "data": {
+                            "scale_min": 1,
+                            "scale_max": 2,
+                            "scale_step": 0.2
+                        },
+                        "count": 5
+                    }
+                }
+            }
+        }
+    ]
+}

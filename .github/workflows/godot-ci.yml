@@ -1,0 +1,88 @@
+# Work adapted from
+# https://github.com/abarichello/godot-ci/blob/master/.github/workflows/godot-ci.yml
+# (c) 2018 BARICHELLO (Original author)
+# (c) 2023 Gerlai Laboratory
+# License: MIT
+# https://github.com/abarichello/godot-ci/blob/master/LICENSE
+
+name: "godot-ci export"
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  GODOT_VERSION: 4.1
+  EXPORT_NAME: zfish
+  PROJECT_PATH: .
+
+jobs:
+  export:
+    name: Export
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci:4.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates
+          mv -v /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          godot -v --path ${PROJECT_PATH} -e --quit --headless
+      - name: Linux Build
+        run: |
+          mkdir -v -p build/linux
+          godot -v --path ${PROJECT_PATH} --export-release --headless "Linux/X11" ./build/linux/$EXPORT_NAME.x86_64
+      - name: Windows Build
+        run: |
+          mkdir -v -p build/windows
+          godot -v --path ${PROJECT_PATH} --export-release --headless "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: build
+
+  export-web:
+    name: Web Export
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci:4.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Setup
+        run: |
+          apt-get update && apt-get install -y rsync openssh-client curl
+          mkdir -v -p ~/.local/share/godot/export_templates
+          mv -v /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          godot -v --path ${PROJECT_PATH} -e --quit --headless
+      - name: Web Build
+        run: |
+          mkdir -v -p build/web
+          godot -v --path ${PROJECT_PATH} --export-release --headless "Web" ./build/web/index.html
+      - name: COI Patch
+        run: |
+          curl https://raw.githubusercontent.com/gzuidhof/coi-serviceworker/master/coi-serviceworker.js > ./build/web/coi-serviceworker.js
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: web
+          path: build
+      - name: Setup ssh keys
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          branch: gh-pages
+          folder: build/web
+          ssh-key: true

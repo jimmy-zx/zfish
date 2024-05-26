@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1k88xu16ig6w"]
+
+[ext_resource type="Script" path="res://modules/shrimp/body.gd" id="1_lf04w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b2qdu"]
+radius = 1.0
+
+[node name="Shrimp" type="RigidBody2D" groups=["shrimp"]]
+collision_layer = 2
+gravity_scale = 0.0
+script = ExtResource("1_lf04w")
+
+[node name="ShrimpTexture" type="ColorRect" parent="."]
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
+color = Color(1, 0.501961, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_b2qdu")

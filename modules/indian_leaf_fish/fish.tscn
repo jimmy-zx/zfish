@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddusa6bq8f7g5"]
+
+[ext_resource type="Script" path="res://modules/indian_leaf_fish/fish.gd" id="1_mhi81"]
+[ext_resource type="Texture2D" uid="uid://bi3xhp4a8c6ps" path="res://arts/Nandus_nandus_hi_res-removebg-preview.png" id="2_jd1i1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2vgg"]
+radius = 49.0
+height = 186.0
+
+[node name="Fish" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_mhi81")
+
+[node name="FishTexture" type="Sprite2D" parent="."]
+rotation = -0.261799
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_jd1i1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_g2vgg")
